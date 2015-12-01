@@ -1,0 +1,48 @@
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\IndicizzaDocumenti.exe.config
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\IndicizzaDocumenti.exe
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\IndicizzaDocumenti.pdb
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\DocX.dll
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Lucene.Net.dll
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Abstractions.dll
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Client.Lightweight.dll
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Lucene.Net.pdb
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Lucene.Net.xml
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Abstractions.pdb
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Abstractions.xml
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Client.Lightweight.pdb
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Client.Lightweight.xml
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.csprojResolveAssemblyReference.cache
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\MainWindow.baml
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\MainWindow.g.cs
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\App.g.cs
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti_MarkupCompile.cache
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.g.resources
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.Properties.Resources.resources
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.csproj.GenerateResource.Cache
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.exe
+F:\NoSql\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\IndicizzaDocumenti.exe.config
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\IndicizzaDocumenti.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\IndicizzaDocumenti.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\DocX.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\ICSharpCode.SharpZipLib.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Lucene.Net.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Abstractions.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Client.Lightweight.dll
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Lucene.Net.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Lucene.Net.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Abstractions.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Abstractions.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Client.Lightweight.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\bin\Debug\Raven.Client.Lightweight.xml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\MainWindow.baml
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\MainWindow.g.cs
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\App.g.cs
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti_MarkupCompile.cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.g.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.Properties.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\IndicizzaDocumenti\IndicizzaDocumenti\obj\Debug\IndicizzaDocumenti.csproj.GenerateResource.Cache

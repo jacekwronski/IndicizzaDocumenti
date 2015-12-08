@@ -36,6 +36,9 @@ namespace IndicizzaDocumenti
             this.Index(x => x.Indirizzo, FieldIndexing.NotAnalyzed);
 
             this.Suggestion(x => x.Titolo);
+
+            this.TermVectors.Add(x => x.Contenuto, FieldTermVector.Yes);
+
         }
 
     }

@@ -22,11 +22,6 @@ namespace IndicizzaDocumenti
             {
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    //var result = documentStore.DatabaseCommands.Suggest("DocumentoIndex", new SuggestionQuery() { Field = "Titolo", Term = searchString });
-
-                    // var result = session.Query<Company, CompanyByNameIndex>().Where(x => x.Name.StartsWith(searchString)).Search(x => x.Name, "", 1, SearchOptions.
-
-                    //.Search(x => x.ProductName, searchString, 2, SearchOptions.Or, EscapeQueryOptions.RawQuery).OfType<Company>().ToList();
 
                     var searchArray = searchString.Split(' ');
 
@@ -39,17 +34,14 @@ namespace IndicizzaDocumenti
                     }
 
                     var result = session.Query<Documento, DocumentoIndex>()
-                        .Search(x => x.Contenuto, stringSearchTerms, 1, SearchOptions.Or, EscapeQueryOptions.AllowPostfixWildcard);
-                    //var result = session.Query<PeopleCompaniesSearchDue.FullTextResult, PeopleCompaniesSearchDue>()
-                    //    //.Where(x => x.FirstName == searchString)
-                    //    .Search(x => x.Content, searchString + "*", 2, SearchOptions.Guess, EscapeQueryOptions.AllowPostfixWildcard)
-                    //        .ProjectFromIndexFieldsInto<PeopleCompaniesSearch.FullTextResult>().ToList();
-
-                    array = result.Select(x => new SearchResult() { NomeFile = x.NomeFile, Indirizzo = x.Indirizzo }).ToList();
-
-                    //string[] array = result.Suggestions; //result.Select(x => "Name: " + x.Name + " Company Address: " + x.Address.City).ToArray();
+                        .Search(x => x.Contenuto, stringSearchTerms, 1, SearchOptions.Or, EscapeQueryOptions.AllowPostfixWildcard)
+                        .ToFacets(new List<Facet>() { new Facet<Documento>() { Name = x => x.Contenuto }, new Facet<Documento>() { Name = x => x.Titolo } });
 
 
+
+                    //array = result.Select(x => new SearchResult() { NomeFile = x.NomeFile, Indirizzo = x.Indirizzo }).ToList();
+
+                    array = result.Results.Select(x => new SearchResult() { Indirizzo = x.Key + " " + x.Value.Values.ToList().Select(x => x. }).ToList();
                 }
 
                 return array;

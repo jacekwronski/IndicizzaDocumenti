@@ -13,17 +13,7 @@ namespace IndicizzaDocumenti
 {
     public class FileStore
     {
-        //private static readonly Lazy<IFilesStore> store = new Lazy<IFilesStore>(CreateStore);
-
         public static ShardStrategy ShardStrategy;
-        
-
-
-
-        //public static IFilesStore Store
-        //{
-        //    get { return store.Value; }
-        //}
 
         public static void CreateStore()
         {

@@ -19,9 +19,9 @@ namespace IndicizzaDocumenti
         {
             var shards = new Dictionary<string, IAsyncFilesCommands>
             {
-                {"Italia", new AsyncFilesServerClient("http://10.211.55.3:8080", "fsItalia")},
-                {"Francia", new AsyncFilesServerClient("http://10.211.55.3:8080", "fsFrancia")},
-                {"Polonia", new AsyncFilesServerClient("http://10.211.55.3:8080", "fsPolonia")}
+                {"Italia", new AsyncFilesServerClient("http://localhost:8080", "fsItalia")},
+                {"Francia", new AsyncFilesServerClient("http://localhost:8080", "fsFrancia")},
+                {"Polonia", new AsyncFilesServerClient("http://localhost:8080", "fsPolonia")}
             };
 
             FileStore.ShardStrategy = new ShardStrategy(shards);

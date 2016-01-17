@@ -34,14 +34,18 @@ namespace IndicizzaDocumenti
                     }
 
                     var result = session.Query<Documento, DocumentoIndex>()
-                        .Search(x => x.Contenuto, stringSearchTerms, 1, SearchOptions.Or, EscapeQueryOptions.AllowPostfixWildcard)
-                        .ToFacets(new List<Facet>() { new Facet<Documento>() { Name = x => x.Contenuto }, new Facet<Documento>() { Name = x => x.Titolo } });
+                        .Search(x => x.Contenuto, stringSearchTerms, 2, SearchOptions.Or, EscapeQueryOptions.AllowPostfixWildcard)
+                        .Search(x => x.Titolo, stringSearchTerms, 1, SearchOptions.Or, EscapeQueryOptions.AllowPostfixWildcard);
+                    
+                        //.ToFacets(new List<Facet>() { new Facet<Documento>() { Name = x => x.Contenuto }, new Facet<Documento>() { Name = x => x.Titolo } });
 
 
 
-                    //array = result.Select(x => new SearchResult() { NomeFile = x.NomeFile, Indirizzo = x.Indirizzo }).ToList();
+                    array = result.Select(x => new SearchResult() { NomeFile = x.NomeFile, Indirizzo = x.Indirizzo }).ToList();
 
-                    array = result.Results.Select(x => new SearchResult() { Indirizzo = x.Key + " " + x.Value.Values.ToList().Select(x => x. }).ToList();
+
+
+                   // array = result.Results.Select(x => new SearchResult() { Indirizzo = x.Key + " " + x.Value.Values.FirstOrDefault().Range }).ToList();
                 }
 
                 return array;

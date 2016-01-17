@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,7 +50,7 @@ namespace IndicizzaDocumenti
 
                 var files = await command.GetFilesAsync(x);
 
-                foreach (var file in files.Files.Select(y => y.Name))
+                foreach (var file in files.Files)
                 {
                     filesList.Items.Add(file);
                 }
@@ -71,40 +72,46 @@ namespace IndicizzaDocumenti
             {
                 string filename = dlg.FileName;
 
-                using (FileStream fileStream = File.Open(filename, FileMode.Open))
+                try
                 {
-                   
-                    var command = new AsyncShardedFilesServerClient(FileStore.ShardStrategy);
 
-                    string ravenFileName = command.UploadAsync(System.IO.Path.GetFileName(filename), new RavenJObject() { { "Country", country } }, fileStream).Result;
-
-                    string content = String.Empty;
-                    DocX doc = DocX.Load(fileStream);
-
-                    content = doc.Text;
-
-                    fileStream.Position = 0;
-
-
-                    using (IDocumentSession session = RavenConnection.DocumentStore.OpenSession())
+                    using (FileStream fileStream = File.Open(filename, FileMode.Open))
                     {
-                        
 
-                        Documento documento = new Documento()
+                        var command = new AsyncShardedFilesServerClient(FileStore.ShardStrategy);
+
+                        string ravenFileName = command.UploadAsync(System.IO.Path.GetFileName(filename), new RavenJObject() { { "Country", country } }, fileStream).Result;
+
+                        string content = String.Empty;
+                        DocX doc = DocX.Load(fileStream);
+
+                        content = doc.Text;
+
+                        fileStream.Position = 0;
+
+
+                        using (IDocumentSession session = RavenConnection.DocumentStore.OpenSession())
                         {
-                            Titolo = System.IO.Path.GetFileName(filename),
-                            Contenuto = content,
-                            NomeFile = System.IO.Path.GetFileName(filename),
-                            Indirizzo = ravenFileName
-                        };
+                            Documento documento = new Documento()
+                            {
+                                Titolo = System.IO.Path.GetFileName(filename),
+                                Contenuto = content,
+                                NomeFile = System.IO.Path.GetFileName(filename),
+                                Indirizzo = ravenFileName
+                            };
 
-                        session.Store(documento);
+                            session.Store(documento);
 
-                        session.SaveChanges();
+                            session.SaveChanges();
+                        }
+
+                        ReloadFiles();
+
                     }
-
-                    ReloadFiles();
-
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -119,43 +126,48 @@ namespace IndicizzaDocumenti
 
             lstFiles.Items.Clear();
 
-            array.ForEach(x => { lstFiles.Items.Add(x.Indirizzo); });
-
-            //sugg.Text = Task.Factory.StartNew(() => ravenManager.Suggestions(RavenConnection.DocumentStore, text)).Result;
-
+            array.ForEach(x => { lstFiles.Items.Add(x); });
         }
 
 
         private void SaveFile_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
-
-            saveFileDialog.ShowDialog();
-
-            string locazioneFile = String.Empty;
-
-            if (lstFiles.SelectedItem != null)
-                locazioneFile = lstFiles.SelectedValue.ToString();
-            if (filesList.SelectedItem != null)
-                locazioneFile = filesList.SelectedValue.ToString();
-
-            Stream file = null;
-
-            var command = new AsyncShardedFilesServerClient(FileStore.ShardStrategy);
-
-            file = command.DownloadAsync(locazioneFile).Result;
-
-
-            if (String.IsNullOrEmpty(saveFileDialog.FileName) == false)
+            try
             {
-                string fileName = saveFileDialog.FileName;
 
-                using (FileStream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+
+                saveFileDialog.ShowDialog();
+
+                string locazioneFile = String.Empty;
+
+                if (lstFiles.SelectedItem != null)
+                    locazioneFile = ((SearchResult)(lstFiles.SelectedItem)).Indirizzo;
+                if (filesList.SelectedItem != null)
+                    locazioneFile = ((FileHeader)(filesList.SelectedItem)).FullPath;
+
+                Stream file = null;
+
+                var command = new AsyncShardedFilesServerClient(FileStore.ShardStrategy);
+
+                file = command.DownloadAsync(locazioneFile).Result;
+
+
+                if (String.IsNullOrEmpty(saveFileDialog.FileName) == false)
                 {
-                    file.CopyTo(stream);
-                    stream.Close();
-                    file.Close();
+                    string fileName = saveFileDialog.FileName;
+
+                    using (FileStream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                    {
+                        file.CopyTo(stream);
+                        stream.Close();
+                        file.Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -173,29 +185,37 @@ namespace IndicizzaDocumenti
 
         private void button_Click_2(object sender, RoutedEventArgs e)
         {
-            string locazioneFile = String.Empty;
-
-            if (lstFiles.SelectedItem != null)
-                locazioneFile = lstFiles.SelectedValue.ToString();
-            if (filesList.SelectedItem != null)
-                locazioneFile = filesList.SelectedValue.ToString();
-
-            using (IDocumentSession session = RavenConnection.DocumentStore.OpenSession())
+            try
             {
-                Documento documento = session.Query<Documento>().Where(x => x.Indirizzo == locazioneFile).FirstOrDefault();
 
-                session.Delete<Documento>(documento);
+                string locazioneFile = String.Empty;
 
-                var command = new AsyncShardedFilesServerClient(FileStore.ShardStrategy);
+                if (lstFiles.SelectedItem != null)
+                    locazioneFile = ((SearchResult)(lstFiles.SelectedItem)).Indirizzo;
+                if (filesList.SelectedItem != null)
+                    locazioneFile = ((FileHeader)(filesList.SelectedItem)).FullPath;
 
-                command.DeleteAsync(documento.Indirizzo);
+                using (IDocumentSession session = RavenConnection.DocumentStore.OpenSession())
+                {
+                    Documento documento = session.Query<Documento>().Where(x => x.Indirizzo == locazioneFile.TrimStart(new[] { '/' })).FirstOrDefault();
+                    if (documento != null)
+                        session.Delete<Documento>(documento);
 
-                session.SaveChanges();
+                    var command = new AsyncShardedFilesServerClient(FileStore.ShardStrategy);
+
+                    if (documento != null)
+                        command.DeleteAsync(documento.Indirizzo);
+                    else
+                        command.DeleteAsync(locazioneFile);
+
+                    session.SaveChanges();
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             ReloadFiles();
-
-
         }
     }
 }
